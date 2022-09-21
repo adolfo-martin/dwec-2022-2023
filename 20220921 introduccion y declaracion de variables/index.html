@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript o EcmaScript</h1>
+
+    <script>
+
+        // ejemplo "hola mundo"
+        document.write('hola mundo !!');
+
+        let variable;
+        console.log(typeof(variable));
+
+        variable=null;
+        console.log(typeof(variable));
+
+        variable=5;
+        console.log(typeof(variable));
+
+        variable="holaa";
+        console.log(typeof(variable));
+
+        variable=true;
+        console.log(typeof(variable));
+
+        variable=['manzana','plátano','fresas'];
+        console.log(typeof(variable));
+
+        variable={
+            nombre: 'Pepe',
+            apellidos: 'García'
+        };
+        console.log(typeof(variable));
+
+
+        //declaración de las variables
+        'use strict'
+        edad1= 18;              //PROHIBIDO
+        var edad2= 18;          //PROHIBIDO
+
+
+        let edad3= 18;
+        const edad4= 18;
+
+        function prueba_var(){
+            console.log('Inicio');{
+                var nombre = 'Juan';
+            }
+            console.log(nombre);
+            console.log('Fin')
+        }
+
+        prueba_var();
+
+        const PI = 3.141592;
+        const MAYORIADEEDAD = 18;
+        const PUERTO_HTTP = 80;
+        const PUERTO_HTTPS = 443;
+
+        const edad = 18;
+        </script>
+</body>
+</html>
