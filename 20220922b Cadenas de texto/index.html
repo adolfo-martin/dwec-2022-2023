@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict';
+        const nombre = 'Cristian';
+        const apellidos = 'García López';
+        const poblacion = 'Águilas';
+        const pais = 'España';
+        
+        // const mensaje1 = 'Hola ' + 'soy ' + nombre + ' ' + apellidos + '.' 
+        // + ' Vivo en ' + poblacion + '. Mis proximas vacaciones las pasare en ' + pais 
+        // console.log(mensaje1);
+
+        //String literals
+        // const mensaje2 = `Hola soy ${nombre} ${apellidos}. Tengo ${10+10} años.
+        // Vivo en ${poblacion}. Mis próximas vacaciones las pasaré en ${pais}`;
+        // console.log(mensaje2);
+
+
+        function mostrarMensaje(nombre = 'Pepe',apellidos = 'López',poblacion='Totana',pais='Francia'){
+            const mensaje = `Hola soy ${nombre} ${apellidos}. Tengo ${10+10} años. Vivo en ${poblacion}. Mis próximas vacaciones las pasaré en ${pais}`;
+            console.log(mensaje);
+        }
+        mostrarMensaje(nombre,apellidos,poblacion,pais);
+        mostrarMensaje(nombre,apellidos,undefined,pais);
+        mostrarMensaje(nombre,apellidos);
+        mostrarMensaje(nombre,apellidos,null,pais);
+        mostrarMensaje();
+    </script>
+</body>
+</html>
