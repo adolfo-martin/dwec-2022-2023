@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>First class citizens</h1>
+
+    <script>
+        'use strict';
+        
+        function siete() {
+            return 7;
+        }
+        console.log(siete());
+
+        
+        function sumar(numero1,numero2){
+            return numero1+numero2;
+        }
+        
+        console.log(sumar(2,5));
+        console.log(sumar);
+
+        let numero = siete();
+        console.log(numero);
+
+        let operacion = sumar;
+
+        console.log(sumar(6,9));
+        console.log(operacion(6,9));
+
+        function restar(numero1,numero2){
+            return numero1-numero2;
+        }
+
+
+        function imprimir(operacion,numero1,numero2){
+            const resultado = operacion(numero1,numero2);
+            console.log(resultado);
+        }
+        
+        imprimir(sumar,9,3);
+        imprimir(restar,9,3);
+
+        //callback
+    </script>
+</body>
+</html>
