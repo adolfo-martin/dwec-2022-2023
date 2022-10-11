@@ -13,3 +13,16 @@ const brands = [
 ];
 
 
+const nSelect = document.getElementById('tSelBrands');
+
+for (const brand of brands) {
+    const nOption = document.createElement('option');
+    nSelect.appendChild(nOption);
+    nOption.setAttribute('value', brand['key']);
+
+    const nText = document.createTextNode(brand['name']);
+    nOption.appendChild(nText);
+}
+
+
+
