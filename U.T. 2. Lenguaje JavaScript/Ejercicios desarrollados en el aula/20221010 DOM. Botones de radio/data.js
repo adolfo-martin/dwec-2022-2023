@@ -9,3 +9,5 @@ export const typesOfStreet = [
     { shortName: 'ctra', longName: 'Carretera' },
     { shortName: 'pas', longName: 'Paseo' },
 ];
+
+export const PI = 3.141592;

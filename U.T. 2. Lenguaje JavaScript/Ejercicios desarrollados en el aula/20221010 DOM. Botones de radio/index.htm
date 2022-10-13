@@ -11,7 +11,7 @@
 <body>
 
     <form action="">
-        <label style="display: block; font-weight: bold;" for="">Género</label>
+        <h3>Género</h3>
 
         <input type="radio" name="gender" id="tRadMale" value="male">
         <label for="tRadMale">Masculino</label>
@@ -22,14 +22,19 @@
         <input type="radio" name="gender" id="tRadUndefined" value="undefined">
         <label for="tRadUndefined">Indefinido</label>
 
-        <label style="display: block; font-weight: bold;" for="">Tipo de vía</label>
+        <h3>Tipo de vía</h3>
 
+        <div id="tDivTypeOfStreet"></div>
 
 
         <input style="display: block; margin-top: 15px;" type="submit" value="Enviar">
+
+        <script type="module">
+            import { showTypesOfStreet } from './code.js';
+
+            showTypesOfStreet();
+        </script>
     </form>
-
-
 </body>
 
 </html>
