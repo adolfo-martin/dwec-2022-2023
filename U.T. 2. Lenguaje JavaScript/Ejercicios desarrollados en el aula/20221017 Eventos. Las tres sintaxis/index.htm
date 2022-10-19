@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        :root {
+            font-size: 3rem;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Primera sintaxis: poner el evento en la propia etiqueta -->
+    <p onclick="alert('Has cliqueado en en párrafo uno')">Éste es el párrafo uno</p>
+
+    <p onmouseover="mostrarMensajeDos(); mostrarMensajeDos()">Éste es el párrafo dos</p>
+
+    <p onmouseover="console.log('Dentro')" onmouseout="console.log('Fuera')">Éste es el párrafo tres</p>
+
+    <p id="tParFour">Éste es el párrafo cuatro</p>
+
+    <p id="tParFive">Éste es el párrafo cinco</p>
+
+    <p>Éste es el párrafo seis</p>
+
+    <script>
+        'use strict';
+
+        function mostrarMensajeDos() {
+            alert('Has entrado en el párrafo dos');
+            // return undefined;
+        }
+
+        // Segunda sintaxis: se recupera la etiqueta y se manipula como un objeto
+        const nParFour = document.getElementById('tParFour');
+        nParFour.onclick = mostrarMensajeDos;
+
+        // Clausura 
+        let mensaje = 'Has cliqueado el párrafo cuatro';
+        nParFour.onclick = function () {
+            console.log(mensaje);
+        }
+        mensaje = 'Has cliqueado el párrafo 44444';
+        console.log(mensaje);
+
+
+        // Tercera sintaxis: parecida a la de Java
+        const nParFive = document.getElementById('tParFive');
+        nParFive.addEventListener('click', mostrarMensajeDos);
+        nParFive.addEventListener('click', function () {
+            alert('Has cliqueado en el párrafo cinco')
+        });
+        nParFive.addEventListener('click', () => alert('Has cliqueado en el párrafo cinco'));
+
+    </script>
+</body>
+
+</html>

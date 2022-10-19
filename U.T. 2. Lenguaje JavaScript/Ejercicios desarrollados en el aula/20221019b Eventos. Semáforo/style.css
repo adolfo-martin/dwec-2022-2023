@@ -1,0 +1,27 @@
+.semaforo {
+    background-color: black;
+    display: inline-flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+}
+
+.luz {
+    --radio: 100px;
+    width: var(--radio);
+    flex-basis: var(--radio);
+    border-radius: 50%;
+    opacity: 0.2;
+}
+
+.luz-roja {
+    background-color: red;
+}
+
+.luz-ambar {
+    background-color: orange;
+}
+
+.luz-verde {
+    background-color: green;
+}
