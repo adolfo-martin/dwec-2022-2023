@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="http://www.asfafasfdasfasfasd.com" id="tFrmData">
+        <label>
+            Nombre:
+            <input type="text" name="nombre" value="Adolfo" required>
+        </label>
+
+        <br>
+        <label>
+            Apellidos:
+            <input type="text" name="apellidos" value="Martín">
+        </label>
+
+        <br>
+        <label>
+            Año de nacimiento:
+            <input type="number" min="1970" max="2022" name="anho-nacimiento" id="tNumBirthYear">
+        </label>
+
+        <h2>Situación legal</h2>
+        <label>
+            <input type="radio" name="situacion-legal" value="under_18" required>
+            Menor de edad
+        </label>
+        <label>
+            <input type="radio" name="situacion-legal" value="over_18" required>
+            Mayor de edad
+        </label>
+
+        <h2>Situación laboral</h2>
+        <label>
+            <input type="checkbox" name="nini" id="tChkNini">
+            Nini
+        </label>
+        <label>
+            <input type="checkbox" name="estudiante" id="tChkStudent">
+            Estudiante
+        </label>
+        <label>
+            <input type="checkbox" name="trabajador" id="tChkWorker">
+            Trabajador
+        </label>
+        <label>
+            <input type="checkbox" name="jubilado" id="tChkRetired">
+            Jubilado
+        </label>
+
+        <br>
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script src="./code.js"></script>
+</body>
+
+</html>
