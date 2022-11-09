@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input[type="checkbox"],
+        input[type="range"] {
+            accent-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" name="estatura" id="tTxtHeight">
+
+    <br>
+    <input type="number" disabled id="tNumHeight">
+
+    <br>
+    <input type="range" min="0" max="200" id="tRanHeight">
+
+    <br>
+    <select name="modulo" id="tSelModule">
+        <option selected disabled></option>
+        <option value="di">Diseño de interfaces</option>
+        <option value="ec">Entorno cliente</option>
+        <option value="es">Entorno servidor</option>
+        <option value="lm">Lenguajes de marcas</option>
+        <option value="ds">Despliegue de sistemas</option>
+    </select>
+
+    <br>
+    <label>
+        <input type="radio" value="di" name="module" id="tChkDI">
+        Diseño de interfaces
+    </label>
+    <label>
+        <input type="radio" value="ec" name="module" id="tChkEC">
+        Entorno cliente
+    </label>
+    <label>
+        <input type="radio" value="es" name="module" id="tChkES">
+        Entorno servidor
+    </label>
+    <label>
+        <input type="radio" value="lm" name="module" id="tChkLM">
+        Lenguajes de marcas
+    </label>
+    <label>
+        <input type="radio" value="ds" name="module" id="tChkDS">
+        Despliegue de sistemas
+    </label>
+
+    <br>
+    <br>
+    <fieldset>
+        <legend>Me gusta comer</legend>
+        <label>
+            <input type="checkbox" name="arroz" id="" data-codigo="ar" data-descripcion="arroz de bogabante">
+            Arroz
+        </label>
+
+        <label>
+            <input type="checkbox" name="bocadillo" id="" data-codigo="bo"
+                data-descripcion="bocadillo de atún con mayonesa">
+            Bocadillo
+        </label>
+
+        <label>
+            <input type="checkbox" name="pasta" id="" data-codigo="pa" data-descripcion="rissoto de setas">
+            Pasta
+        </label>
+
+        <label>
+            <input type="checkbox" name="pescado" id="" data-codigo="pe" data-descripcion="bacalao a la portuguesa">
+            Pescado
+        </label>
+    </fieldset>
+
+    <textarea id="tTxaComidas" cols="100" rows="10"></textarea>
+
+    <script src="./code.js" type="module"></script>
+</body>
+
+</html>

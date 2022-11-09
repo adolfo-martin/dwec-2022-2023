@@ -1,0 +1,12 @@
+{
+  "name": "20221107-clase-array",
+  "version": "1.0.0",
+  "description": "Playing with class Array",
+  "main": "code.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adolfo Martín",
+  "license": "ISC",
+  "type": "module"
+}
