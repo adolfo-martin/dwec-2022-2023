@@ -4,7 +4,9 @@ import { datosEmpresa as employees } from "./datos_empresa.js";
 // console.log(showManagersQuantityLegacyWay());
 // console.log(showManagersQuantityModernWay());
 // console.log(showBlondeComputerGuyQuantity());
-console.table(showFiveFirstComputerGuys());
+// showFiveFirstComputerGuys();
+// console.log(getFirstComputerGuy());
+console.log(getMaxFullnameAndWage());
 
 //--------------------------------------
 function showEmployeesQuantity() {
@@ -83,13 +85,57 @@ function showFiveFirstComputerGuys() {
 
     function orderByLastName(employee1, employee2) {
         if (employee1.apellido.localeCompare(employee2.apellido) === 0) {
-
+            return employee1.nombre.localeCompare(employee2.nombre);
+        } else if (employee1.apellido.localeCompare(employee2.apellido) < 0) {
+            return -1;
+        } else {
+            return 1;
         }
     }
 
-    return employees
-        .filter(isComputerGuy)
+    employees.filter(isComputerGuy)
         .filter(isFiveFirst)
+        .sort(orderByLastName)
         .map(getFullName)
-        .sort()
+        .forEach(name => console.log(name));
+}
+
+//--------------------------------------
+function getFirstComputerGuy() {
+    const isComputerGuy = ({ categoria }) => categoria === 'informatico';
+
+    const employee = employees.find(isComputerGuy);
+    return {
+        name: `${employee.nombre} ${employee.apellido}`,
+        email: employee.correoElectronico,
+    }
+}
+
+//-------------------------------------
+// function getMaxFullnameAndWage() {
+//     let maxWage = 0;
+//     let fullname = '';
+
+//     for (const employee of employees) {
+//         if (employee.salarioBruto > maxWage) {
+//             maxWage = employee.salarioBruto;
+//             fullname = `${employee.nombre} ${employee.apellido}`
+//         }
+//     }
+
+//     return { fullname, maxWage };
+// }
+
+// OVERENGENIERING
+function getMaxFullnameAndWage() {
+    return employees.reduce((acc, cur) => {
+        if (cur.salarioBruto > acc.maxwage) {
+            return {
+                fullname: `${cur.nombre} ${cur.apellido}`,
+                maxwage: cur.salarioBruto
+            };
+        } else {
+            return acc;
+        }
+    }, { fullname: '', maxwage: 0 });
 }
