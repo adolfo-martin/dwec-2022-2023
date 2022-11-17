@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>Frase del día</header>
+    <main>
+        <p id="tParPhrase"></p>
+        <p id="tParAuthor"></p>
+    </main>
+
+    <script type="module">
+        function showPhraseAndAuthor(data) {
+            const phrase = data.quote.body;
+            const author = data.quote.author;
+            // tParPhrase.innerHTML = phrase;
+            // tParPhrase.innerText = phrase;
+            tParPhrase.textContent = phrase;
+            tParAuthor.textContent = author;
+        }
+
+        fetch('https://favqs.com/api/qotd')
+            .then(response => response.json())
+            .then(showPhraseAndAuthor)
+            .catch(error => console.error('[ERROR]', error))
+    </script>
+</body>
+
+</html>

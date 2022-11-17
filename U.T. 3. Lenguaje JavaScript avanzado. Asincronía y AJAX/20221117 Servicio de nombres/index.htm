@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module" src="./code.js" defer></script>
+    <style>
+        table,
+        tr,
+        th,
+        td {
+            border: solid 2px blue;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <label>Cuántos nombres quieres: </label>
+        <input type="number" id="tNumHowManyNames" value="5">
+
+        <br>
+        <label>Dime el género:</label>
+        <label>
+            <input type="radio" name="gender" value="male">
+            Masculino
+        </label>
+        <label>
+            <input type="radio" name="gender" value="female">
+            Femenino
+        </label>
+        <label>
+            <input type="radio" name="gender" value="both" checked>
+            Ambos
+        </label>
+
+        <br><br>
+        <input type="button" id="tButAskforNames" value="Pedir nombres">
+        <br><br>
+    </form>
+
+    <table id="tTabNames">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</body>
+
+</html>
