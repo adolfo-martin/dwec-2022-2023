@@ -1,0 +1,13 @@
+{
+  "name": "introduccion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "intro.js",
+  "scripts": {
+    "start": "node ./intro.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adolfo Martin",
+  "license": "ISC",
+  "type": "module"
+}
