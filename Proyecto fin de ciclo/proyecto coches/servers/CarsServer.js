@@ -7,8 +7,9 @@ export default class CarsServer {
         this._port = port;
 
         this._app = express();
-        // this._app(express.json());
-        this._app(express.urlencoded({ extended: true }));
+        this._app.use(cors());
+        this._app.use(express.json());
+        this._app.use(express.urlencoded({ extended: true }));
 
         this._configureRoutes();
     }
@@ -33,8 +34,8 @@ export default class CarsServer {
     }
 
     _createCar(req, res) {
-        const model = req.params.model;
-        const brand = req.params.brand;
+        const model = req.body.model;
+        const brand = req.body.brand;
         this._repository.createCar(1, model, brand);
         res.status(200).json({ ok: true, message: `The car was created ${brand} ${model} successfully` });
     }

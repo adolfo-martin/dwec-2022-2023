@@ -4,5 +4,5 @@ GET http://127.0.0.1:3000/api/cars
 POST http://127.0.0.1:3000/api/cars
 content-type: application/x-www-form-urlencoded
 
-brand=Porsche
-&model=911
+brand=Renault
+&model=Clio
