@@ -1,0 +1,17 @@
+{
+  "name": "backend_students",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "transpile": "tsc && node ../dist/App.js",
+    "start": "node ../dist/App.js"
+  },
+  "keywords": [],
+  "author": "Adolfo Martín",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "typescript": "^4.9.4"
+  }
+}
