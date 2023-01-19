@@ -1,0 +1,39 @@
+:root {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px;
+    --darkcolor: #040458;
+    --mediumcolor: #3333de;
+    --lightcolor: #c9c9f9;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+}
+
+table,
+tr,
+th,
+td {
+    border: solid 3px var(--darkcolor);
+    border-collapse: collapse;
+    padding: 0.3rem;
+}
+
+th {
+    background-color: var(--mediumcolor);
+    color: var(--lightcolor)
+}
+
+tr:nth-child(2n+1)>td {
+    background-color: var(--lightcolor);
+}
+
+dialog {
+    margin: auto;
+}

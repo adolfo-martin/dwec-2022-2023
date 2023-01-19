@@ -1,0 +1,6 @@
+### Chequeo que haga bien la validacion
+POST http://10.88.72.41:8080/api/login_user
+content-type: application/x-www-form-urlencoded
+
+username=sonia.silverado
+&password=s
