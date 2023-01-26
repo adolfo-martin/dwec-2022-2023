@@ -13,8 +13,17 @@
 <body>
     <header>Playmobil</header>
 
-    <table-boxes></table-boxes>
+    <table-boxes serie="1703135e-03b3-4a32-b8df-16965d19b862"></table-boxes>
 
+    <img src="./spinning-loading.gif" alt="">
+
+    <script type="module">
+        const nTable = document.querySelector('table-boxes');
+        nTable.addEventListener('fillingcompleted', e => {
+            const nImg = document.querySelector('img');
+            document.body.removeChild(nImg);
+        });
+    </script>
 </body>
 
 </html>

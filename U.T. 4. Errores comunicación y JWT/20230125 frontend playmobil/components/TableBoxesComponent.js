@@ -20,6 +20,18 @@ export default class TableBoxesComponent extends HTMLElement {
             <tbody></tbody>
         </table>
     `;
+    #serie;
+
+    get serie() {
+        return this.#serie;
+    }
+
+    set serie(value) {
+        console.log(value);
+        this.#serie = value;
+        this.#retrieveBoxesAndFillTable().then();
+        console.log(value);
+    }
 
     constructor() {
         super();
@@ -33,7 +45,20 @@ export default class TableBoxesComponent extends HTMLElement {
 
     async connectedCallback() {
         console.log('connectedCallback');
-        await this.#retrieveBoxesAndFillTable();
+        // await this.#retrieveBoxesAndFillTable();
+    }
+
+
+    static get observedAttributes() {
+        return ['serie'];
+    }
+
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name === 'serie') {
+            console.log(newValue);
+            this.serie = newValue;
+        }
     }
 
 
@@ -47,7 +72,9 @@ export default class TableBoxesComponent extends HTMLElement {
     async #retrieveBoxesAndFillTable() {
         try {
             const token = window.sessionStorage.getItem('token-playmobil');
-            const serieUuid = this.#extractSerieUuidFromUrl();
+
+            // const serieUuid = this.#extractSerieUuidFromUrl();
+            const serieUuid = this.#serie;
 
             const boxes = await this.#service.retrieveBoxesBySerieUuid(token, serieUuid);
 
@@ -72,10 +99,18 @@ export default class TableBoxesComponent extends HTMLElement {
                 // nTd.addEventListener('click', this.#gotoPageChooseBox.bind(this));
             }
 
+            this.#dispatchTableFillingCompleted();
         } catch (error) {
             alert(error.message);
         }
     }
+
+
+    #dispatchTableFillingCompleted() {
+        const event = new CustomEvent('fillingcompleted');
+        this.dispatchEvent(event);
+    }
+
 
     #gotoPageChooseBox(e) {
         const boxUuid = e.target.dataset.uuid;
