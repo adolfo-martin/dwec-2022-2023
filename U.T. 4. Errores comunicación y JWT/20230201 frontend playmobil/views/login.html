@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <script type="module">
+        // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+        // window.sessionStorage.setItem('token-playmobil', token);
+        // window.location = './choose_serie.html';
+
+        import LoginService from '../services/LoginService.js';
+
+        try {
+            const service = new LoginService();
+            const token = await service.validateUsernameAndPasswordAndRetrieveToken('sonia.silverado', 's');
+            console.log(token);
+        } catch (error) {
+            console.error(error.message);
+        }
+    </script>
+
+    <script src="../components/HeaderLoginComponent.js" type="module" defer></script>
+    <header-login></header-login>
+</body>
+
+</html>

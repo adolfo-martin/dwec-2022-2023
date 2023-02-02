@@ -1,0 +1,22 @@
+:root {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    --darkcolor: #330101;
+    --lightcolor: #e3d1d4;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+}
+
+header-login {
+    background-color: var(--darkcolor);
+    color: white;
+    padding: 0.5rem 1rem;
+}
