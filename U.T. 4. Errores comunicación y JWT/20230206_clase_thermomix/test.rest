@@ -1,0 +1,13 @@
+POST http://10.88.72.91:8081/api/login_user
+Content-Type: application/x-www-form-urlencoded
+
+username=sonia.silverado
+&password=s
+
+### 
+GET http://10.88.72.91:8082/api/book/6917/dishes
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvbmlhLnNpbHZlcmFkbyIsImZpcnN0bmFtZSI6IlNvbmlhIiwibGFzdG5hbWUiOiJTaWx2ZXJhZG8iLCJpYXQiOjE2NzU2Njg4NjAsImV4cCI6MTY3NTY4MzI2MH0.D4U9musrjfrJN7S2Ht1OsdOJAVUGY8tb1QgdeYIEo6s
+
+### 
+GET http://10.88.72.91:8082/api/dish/691701
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvbmlhLnNpbHZlcmFkbyIsImZpcnN0bmFtZSI6IlNvbmlhIiwibGFzdG5hbWUiOiJTaWx2ZXJhZG8iLCJpYXQiOjE2NzU2Njg4NjAsImV4cCI6MTY3NTY4MzI2MH0.D4U9musrjfrJN7S2Ht1OsdOJAVUGY8tb1QgdeYIEo6s

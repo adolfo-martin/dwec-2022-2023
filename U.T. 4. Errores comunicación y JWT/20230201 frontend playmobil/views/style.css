@@ -13,10 +13,24 @@
 
 body {
     min-height: 100vh;
+    display: grid;
+    grid-template-areas:
+        "header"
+        "main"
+    ;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
 }
 
 header-login {
+    grid-area: header;
     background-color: var(--darkcolor);
     color: white;
     padding: 0.5rem 1rem;
+}
+
+main {
+    grid-area: main;
+    display: grid;
+    place-content: center;
 }

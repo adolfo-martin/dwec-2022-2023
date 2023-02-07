@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="../components/RadiosDishesComponent.js" type="module" defer></script>
+
+    <style>
+        #tDivSpinner {
+            display: none;
+            place-content: center;
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background-color: red;
+            opacity: 0.1;
+        }
+
+        .shown {
+            display: grid;
+        }
+    </style>
+</head>
+
+<body>
+    <script type="module">
+        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvbmlhLnNpbHZlcmFkbyIsImZpcnN0bmFtZSI6IlNvbmlhIiwibGFzdG5hbWUiOiJTaWx2ZXJhZG8iLCJpYXQiOjE2NzU2Njg4NjAsImV4cCI6MTY3NTY4MzI2MH0.D4U9musrjfrJN7S2Ht1OsdOJAVUGY8tb1QgdeYIEo6s';
+        window.sessionStorage.setItem('token-thermomix', token);
+
+        document.addEventListener('DOMContentLoaded', setup);
+
+        function setup(e) {
+            showSpinner();
+
+
+            const token = getTokenFromSessionStorage();
+            if (!token) {
+                alert('Debes identificarte para ver los libros. Se te enviará a la página de identificación de usuarios.');
+                window.location = './login.html';
+            }
+
+            const bookId = extractBookIdFromUrl();
+            if (!bookId) {
+                alert('Hay un problema. Primero debe seleccionar el código de libro.');
+                window.location = './choose_book.html';
+            }
+
+            const nRadios = document.querySelector('#tRadDishes');
+            nRadios.setAttribute('book', bookId);
+            nRadios.setAttribute('token', token);
+            nRadios.addEventListener('fillingcompleted', hideSpinner);
+            nRadios.addEventListener('dishchanged', e => {
+                console.log('The dish has changed', e.detail.dish);
+            });
+        }
+
+        function extractBookIdFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            const bookId = params.get('book');
+            return bookId;
+        }
+
+
+        function getTokenFromSessionStorage() {
+            const token = window.sessionStorage.getItem('token-thermomix');
+            return token;
+        }
+
+
+        function showSpinner() {
+            const nDiv = document.querySelector('#tDivSpinner');
+            nDiv.style.display = 'grid';
+        }
+
+
+        function hideSpinner() {
+            const nDiv = document.querySelector('#tDivSpinner');
+            nDiv.style.display = 'none';
+        }
+    </script>
+
+    <h1>Selección de platos</h1>
+
+    <radios-dishes id="tRadDishes"></radios-dishes>
+
+    <button>Mostrar receta</button>
+
+    <div id="tDivSpinner">
+        <img src="./assets/spinner_loading.gif">
+    </div>
+</body>
+
+</html>

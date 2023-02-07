@@ -1,7 +1,7 @@
 export default class LoginService {
 
     async validateUsernameAndPasswordAndRetrieveToken(username, password) {
-        const url = 'http://10.88.74.127:8081/api/login_user';
+        const url = 'http://10.88.72.91:8081/api/login_user';
 
         // Comprueba si el servidor está encendido
         let response;
