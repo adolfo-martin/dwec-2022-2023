@@ -1,99 +1,104 @@
 
     
-        function decodeToken(token) {
-            const parseJwt = token => {
-                try {
-                    return JSON.parse(atob(token.split('.')[1]));
-                } catch (error) {
-                    throw new Error(`Problem decoding token "${token}": ${error.message}.`);
-                }
-            }
-            const tokenDecodificado = parseJwt(token);
-            return tokenDecodificado;
-        }
-------------------------------------------------------------------------------------------------------
-        const url = '';
-
-        // Comprueba si el servidor está encendido
-        let response;
+function decodeToken(token) {
+    const parseJwt = token => {
         try {
-            const method = 'post';
-            const headers = {
-                'content-type': 'application/json',
-                accept: 'application/json'
-            };
-            const body = JSON.stringify({ username, password });
-            console.log(body);
-
-            response = await fetch(url, { method, headers, body });
+            return JSON.parse(atob(token.split('.')[1]));
         } catch (error) {
-            throw new Error(`Cannot validate user: ${error}`);
+            throw new Error(`Problem decoding token "${token}": ${error.message}.`);
         }
+    }
+    const tokenDecodificado = parseJwt(token);
+    return tokenDecodificado;
+}
 
-        // Comprueba si el fetch fue correcto
-        if (!response.ok) {
-            throw new Error(`Cannot validate user: [${response.status} ${response.statusText}]`);
-        }
-
-        // Comprueba si estoy recibiendo JSON
-        let data;
-        try {
-            data = await response.json();
-        } catch (error) {
-            throw new Error(`Cannot validate user: ${error}`);
-        }
-
-        // Comprueba si el data es correcto
-        if (!data.ok) {
-            throw new Error(`Cannot validate user: ${data.message}`);
-        }
-
-        return data.;
 ------------------------------------------------------------------------------------------------------
-	const url = 'http://10.88.72.41:8082/api/series';
+const url = '';
 
-        // Comprueba si el servidor está encendido
-        let response;
-        try {
-            const headers = new Headers();
-            headers.append('Authorization', `Bearer ${token}`);
-            headers.append('Content-Type', 'application/x-www-form-urlencoded');
+let response;
+try {
+    response = await fetch(url, { 
+        method: 'post', 
+        headers: {
+            'content-type': 'application/json',
+            'accept': 'application/json'
+        }, 
+        body: JSON.stringify({ username, password }) 
+    });
+} catch (error) {
+    throw new Error(`Cannot validate user: ${error}`);
+}
 
-            const method = 'get';
+// Comprueba si el fetch fue correcto
+if (!response.ok) {
+    throw new Error(`Cannot validate user: [${response.status} ${response.statusText}]`);
+}
 
-            response = await fetch(url, { method, headers });
-        } catch (error) {
-            throw new Error(`Cannot retrieve playmobil series: ${error}`);
-        }
+// Comprueba si estoy recibiendo JSON
+let data;
+try {
+    data = await response.json();
+} catch (error) {
+    throw new Error(`Cannot validate user: ${error}`);
+}
 
-        // Comprueba si el fetch fue correcto
-        if (!response.ok) {
-            throw new Error(`Cannot retrieve playmobil series: [${response.status} ${response.statusText}]`);
-        }
+// Comprueba si el data es correcto
+if (!data.ok) {
+    throw new Error(`Cannot validate user: ${data.message}`);
+}
 
-        // Comprueba si estoy recibiendo JSON
-        let data;
-        try {
-            data = await response.json();
-        } catch (error) {
-            throw new Error(`Cannot retrieve playmobil series: ${error}`);
-        }
+return data.;
 
-        // Comprueba si el data es correcto
-        if (!data.ok) {
-            throw new Error(`Cannot retrieve playmobil series: ${data.message}`);
-        }
-
-        return data.series;
 ------------------------------------------------------------------------------------------------------
-window.sessionStorage.setItem('token-playmobil', token);
-const token = window.sessionStorage.getItem('token-playmobil');
+const url = '';
+
+// Comprueba si el servidor está encendido
+let response;
+try {
+    const headers = new Headers();
+    headers.append('Authorization', `Bearer ${token}`);
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+    response = await fetch(url, { 
+        method: 'get', 
+        headers 
+    });
+} catch (error) {
+    throw new Error(`Cannot retrieve series: ${error}`);
+}
+
+// Comprueba si el fetch fue correcto
+if (!response.ok) {
+    throw new Error(`Cannot retrieve series: [${response.status} ${response.statusText}]`);
+}
+
+// Comprueba si estoy recibiendo JSON
+let data;
+try {
+    data = await response.json();
+} catch (error) {
+    throw new Error(`Cannot retrieve series: ${error}`);
+}
+
+// Comprueba si el data es correcto
+if (!data.ok) {
+    throw new Error(`Cannot retrieve series: ${data.message}`);
+}
+
+return data.;
+
 ------------------------------------------------------------------------------------------------------
-window.location = '/view/login.html';
+window.sessionStorage.setItem('token', token);
+const token = window.sessionStorage.getItem('token');
+
+------------------------------------------------------------------------------------------------------
+window.location = '/view/index.html';
+
 ------------------------------------------------------------------------------------------------------
 const params = new URLSearchParams(window.location.search);
 const serieUuid = params.get('serie');
 return serieUuid;
+
 ------------------------------------------------------------------------------------------------------
 import PlaymobilService from '../services/PlaymobilService.js';
 
@@ -102,20 +107,7 @@ export default class TableBoxesComponent extends HTMLElement {
     #shadowRoot;
     #template = `
         <style>
-            table, tr, th, td {
-                border: solid 2px black;
-                border-collapse: collapse;
-            }
         </style>
-        <table>
-            <thead>
-                <tr>
-                    <th>Box</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
     `;
     #serie;
 
@@ -124,15 +116,12 @@ export default class TableBoxesComponent extends HTMLElement {
     }
 
     set serie(value) {
-        console.log(value);
         this.#serie = value;
-        this.#retrieveBoxesAndFillTable().then();
-        console.log(value);
+        // this.#retrieveBoxesAndFillTable().then();
     }
 
     constructor() {
         super();
-        console.log('constructor');
 
         this.#shadowRoot = this.attachShadow({ mode: 'open' });
         this.#shadowRoot.innerHTML = this.#template;
@@ -141,7 +130,6 @@ export default class TableBoxesComponent extends HTMLElement {
     }
 
     async connectedCallback() {
-        console.log('connectedCallback');
         // await this.#retrieveBoxesAndFillTable();
     }
 
@@ -153,66 +141,20 @@ export default class TableBoxesComponent extends HTMLElement {
 
     attributeChangedCallback(name, oldValue, newValue) {
         if (name === 'serie') {
-            console.log(newValue);
             this.serie = newValue;
         }
     }
 
 
-    #extractSerieUuidFromUrl() {
-        const params = new URLSearchParams(window.location.search);
-        const serieUuid = params.get('serie');
-        return serieUuid;
-    }
-
-
     async #retrieveBoxesAndFillTable() {
-        try {
-            const token = window.sessionStorage.getItem('token-playmobil');
-
-            // const serieUuid = this.#extractSerieUuidFromUrl();
-            const serieUuid = this.#serie;
-
-            const boxes = await this.#service.retrieveBoxesBySerieUuid(token, serieUuid);
-
-            const nTbody = this.#shadowRoot.querySelector('tbody');
-
-            for (const boxUuid of boxes) {
-                const box = await this.#service.retrieveBoxByUuid(token, boxUuid);
-
-                const nTr = document.createElement('tr');
-                nTbody.appendChild(nTr);
-
-                const nTdDenomination = document.createElement('td');
-                nTr.appendChild(nTdDenomination);
-                nTdDenomination.textContent = box._denomination;
-                nTdDenomination.setAttribute('data-uuid', box._uuid);
-
-                const nTdPrice = document.createElement('td');
-                nTr.appendChild(nTdPrice);
-                nTdPrice.textContent = box._price;
-                nTdPrice.setAttribute('data-uuid', box._uuid);
-
-                // nTd.addEventListener('click', this.#gotoPageChooseBox.bind(this));
-            }
-
-            this.#dispatchTableFillingCompleted();
-        } catch (error) {
-            alert(error.message);
-        }
     }
 
 
     #dispatchTableFillingCompleted() {
-        const event = new CustomEvent('fillingcompleted');
+        const event = new CustomEvent('fillingcompleted', { detail: { serie: this.#serie }});
         this.dispatchEvent(event);
     }
 
-
-    #gotoPageChooseBox(e) {
-        const boxUuid = e.target.dataset.uuid;
-        window.location = `./choose_box.html?box=${boxUuid}`;
-    }
 }
 
 
