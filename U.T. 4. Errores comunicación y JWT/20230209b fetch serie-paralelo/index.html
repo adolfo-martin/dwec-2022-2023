@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="module">
+        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvbmlhLnNpbHZlcmFkbyIsImZpcnN0bmFtZSI6IlNvbmlhIiwibGFzdG5hbWUiOiJTaWx2ZXJhZG8iLCJpYXQiOjE2NzU5Mzc1ODgsImV4cCI6MTY3NTk1MTk4OH0.M86kQ4MMI7tCDHQTFTdrBT8RX_SjaQHhv6OoEzuKRTo';
+        const bookId = 6917
+
+        console.log('Inicio');
+        const dishes = await retrieveDishesByBookId(bookId, token);
+        dishes.push(...dishes, ...dishes, ...dishes, ...dishes, ...dishes);
+        console.log(dishes);
+
+        // for (const dishId of dishes) {
+        //     const dish = await retrieveDishById(dishId, token);
+        //     console.log(dish.name);
+        // }
+
+        // dishes.forEach(async dishId => {
+        //     const dish = await retrieveDishById(dishId, token);
+        //     console.log(dish.name);
+        // });
+
+        const promises = dishes.map(dishId => retrieveDishById(dishId, token));
+        const result = await Promise.all(promises);
+        console.log(result);
+
+        console.log('Fin')
+
+        async function retrieveDishesByBookId(bookId, token) {
+            const url = `http://10.88.72.59:8082/api/book/${bookId}/dishes`;
+
+            // Comprueba si el servidor está encendido
+            let response;
+            try {
+                const headers = new Headers();
+                headers.append('Authorization', `Bearer ${token}`);
+                headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+                response = await fetch(url, {
+                    method: 'get',
+                    headers
+                });
+            } catch (error) {
+                throw new Error(`Cannot retrieve series: ${error}`);
+            }
+
+            // Comprueba si el fetch fue correcto
+            if (!response.ok) {
+                throw new Error(`Cannot retrieve series: [${response.status} ${response.statusText}]`);
+            }
+
+            // Comprueba si estoy recibiendo JSON
+            let data;
+            try {
+                data = await response.json();
+            } catch (error) {
+                throw new Error(`Cannot retrieve series: ${error}`);
+            }
+
+            // Comprueba si el data es correcto
+            if (!data.ok) {
+                throw new Error(`Cannot retrieve series: ${data.message}`);
+            }
+
+            return data.dishes;
+        }
+
+
+        async function retrieveDishById(dishId, token) {
+            const url = `http://10.88.72.59:8082/api/dish/${dishId}`;
+
+            // Comprueba si el servidor está encendido
+            let response;
+            try {
+                const headers = new Headers();
+                headers.append('Authorization', `Bearer ${token}`);
+                headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+                response = await fetch(url, {
+                    method: 'get',
+                    headers
+                });
+            } catch (error) {
+                throw new Error(`Cannot retrieve series: ${error}`);
+            }
+
+            // Comprueba si el fetch fue correcto
+            if (!response.ok) {
+                throw new Error(`Cannot retrieve series: [${response.status} ${response.statusText}]`);
+            }
+
+            // Comprueba si estoy recibiendo JSON
+            let data;
+            try {
+                data = await response.json();
+            } catch (error) {
+                throw new Error(`Cannot retrieve series: ${error}`);
+            }
+
+            // Comprueba si el data es correcto
+            if (!data.ok) {
+                throw new Error(`Cannot retrieve series: ${data.message}`);
+            }
+
+            return data.dish;
+        }
+
+    </script>
+</body>
+
+</html>

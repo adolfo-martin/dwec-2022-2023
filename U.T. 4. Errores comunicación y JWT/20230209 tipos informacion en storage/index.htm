@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="module">
+        const nombre = 'Adolfo Martin'
+        const edad = 25
+        const persona1 = { altura: 190, peso: 80 }
+        const persona2 = { altura: 192, peso: 82 }
+        const personas = [persona1, persona2];
+
+        window.sessionStorage.setItem('nombre', nombre);
+        window.sessionStorage.setItem('edad', edad);
+        window.sessionStorage.setItem('persona1', JSON.stringify(persona1));
+        window.sessionStorage.setItem('personas', JSON.stringify(personas));
+
+        const persona11 = JSON.parse(window.sessionStorage.getItem('persona1'));
+        console.log(persona11.altura);
+
+        const personass = JSON.parse(window.sessionStorage.getItem('personas'));
+        console.log(personass[0]);
+
+    </script>
+</body>
+
+</html>
