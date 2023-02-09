@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="module">
+        import LoginService from '../services/LoginService.js';
+
+
+        document.addEventListener('DOMContentLoaded', setup);
+
+
+        function setup(e) {
+            setupButtonLogin();
+        }
+
+
+        function setupButtonLogin() {
+            document.querySelector('#tButLogin')
+                .addEventListener('click', async e => {
+                    try {
+                        const service = new LoginService();
+                        const token = await service.validateUserAndPasswordAndRetrieveToken('sonia.silverado', 's');
+                        window.sessionStorage.setItem('token-rocks', token);
+                        window.location.href = 'choose_rocks.html';
+                    } catch (error) {
+                        alert(error.message);
+                    }
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <form>
+        <label>Usuario</label>
+        <input type="text" id="tTxtUsername" value="sonia.silverado">
+        <label>Contraseña</label>
+        <input type="password" id="tPasPassword" value="s">
+        <button type="button" id="tButLogin">Login</button>
+    </form>
+</body>
+
+</html>
