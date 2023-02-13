@@ -1,0 +1,12 @@
+:host {
+    background-color: var(--bg-color);
+    border: double 10px var(--border-color);
+    display: inline-block;
+    padding: 1rem;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-weight: bolder;
+    text-align: center;
+}
