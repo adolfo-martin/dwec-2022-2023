@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <textarea id="tAreChat" cols="60" rows="20" disabled></textarea>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.6.3/rxjs.umd.min.js">
+    </script>
+
+    <script>
+        'use strict';
+
+        document.addEventListener('DOMContentLoaded', main);
+
+
+        function main(e) {
+            const websocketMessages$ = createWebsocketMessages$();
+            subscribeTextAreaToWebsocketMessages(websocketMessages$);
+        }
+
+        function createWebsocketMessages$() {
+            const { Observable } = rxjs;
+            const websocketMessages$ = new Observable(observer => {
+                connectChatWebsocket(observer);
+            })
+
+            return websocketMessages$;
+        }
+
+        function connectChatWebsocket(observer) {
+            const websocket = new WebSocket('ws://localhost:443');
+
+            websocket.addEventListener('open', e =>
+                websocket.send('I am your client: openning connection.')
+            );
+
+            websocket.addEventListener('close', e =>
+                console.log('Conection closed')
+            );
+
+            websocket.addEventListener('message', e =>
+                observer.next(e.data)
+            );
+
+            websocket.addEventListener('error', e =>
+                console.log("ERROR: " + e.data)
+            );
+        }
+
+
+        function subscribeTextAreaToWebsocketMessages(websocketMessages$) {
+            const nArea = document.querySelector('#tAreChat');
+            websocketMessages$.subscribe(message => nArea.innerHTML += `${message}\n`);
+        }
+    </script>
+</body>
+
+</html>

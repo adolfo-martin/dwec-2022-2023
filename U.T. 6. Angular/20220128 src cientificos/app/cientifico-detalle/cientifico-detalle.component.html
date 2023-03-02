@@ -1,0 +1,14 @@
+<div *ngIf="cientifico; else tmpNoHayCientifico">
+    <label>Nombre: </label>
+    <span>{{cientifico.nombre}}</span>
+    
+    <label>Nacionalidad: </label>
+    <span>{{cientifico.nacionalidad}}</span>
+    
+    <label>Área de conocimiento: </label>
+    <span>{{cientifico.areaConocimiento}}</span>
+</div>
+
+<ng-template #tmpNoHayCientifico>
+    Consultando información. Espere por favor.
+</ng-template>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.5.2/rxjs.umd.min.js"></script>
+    <script>
+        // const persona = {
+        //     nombre: 'Adolfo',
+        //     apellidos: 'Martín González',
+        //     nombreCompleto: () => `${this.nombre} ${this.apellidos}`
+        // }
+
+        // const nombre = persona.nombre;
+        // const apellidos = persona.apellidos;
+
+        // const { nombre, apellidos } = persona;
+
+        const { of, from, range } = rxjs;
+        const { filter, map } = rxjs.operators;
+
+        // mensaje$ = of('Hola mundo!');
+        // mensaje$.subscribe(console.log)
+
+        const esPar = numero => numero % 2 === 0;
+        const multiplicarPor10 = numero => numero * 10;
+
+        observable$ = range(1, 50)
+            .pipe(
+                filter(esPar),
+                map(multiplicarPor10)
+            );
+
+        const observer = {
+            next: numero => console.log(numero),
+            complete: () => {
+                console.log('🏁');
+                subscripcion.unsubscribe();
+            },
+            error: error => console.error(error),
+        }
+
+        const subscripcion = observable$.subscribe(observer);
+
+    </script>
+</body>
+
+</html>

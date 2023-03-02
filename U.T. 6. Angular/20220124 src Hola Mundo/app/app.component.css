@@ -1,0 +1,32 @@
+:host * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:host {
+    --angular-red: rgb(202, 7, 7);
+    border: solid 5px var(--angular-red);
+    border-radius: 15px;
+    margin: 25px;
+    padding: 25px;
+}
+
+:host > h1 {
+    text-transform: uppercase;
+    font-weight: bolder;
+    text-align: center;
+    color: var(--angular-red);
+    margin-top: 15px;
+}
+
+:host > h2 {
+    text-align: center;
+    color: var(--angular-red);
+    margin: 15px;
+}
+
+:host > p {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 15px;
+}

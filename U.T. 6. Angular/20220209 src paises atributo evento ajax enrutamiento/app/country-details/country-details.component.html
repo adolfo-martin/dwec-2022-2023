@@ -1,0 +1,8 @@
+<!-- <span *ngIf="country$ | async as country; else tmpWaitplease"> -->
+<span *ngIf="country$ | async as country">
+    {{country.name}}
+</span>
+
+<!-- <ng-template #tmpWaitplease>
+    <span>Espere por favor</span>
+</ng-template> -->

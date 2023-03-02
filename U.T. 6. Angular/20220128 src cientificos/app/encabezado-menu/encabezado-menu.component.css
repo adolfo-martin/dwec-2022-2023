@@ -1,0 +1,14 @@
+:host {
+    background-color: cadetblue;
+}
+
+header {
+    background-color: cadetblue;
+}
+
+nav > ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+}
+

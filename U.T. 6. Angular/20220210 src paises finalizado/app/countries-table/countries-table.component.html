@@ -1,0 +1,12 @@
+<table *ngIf="countries$ | async as countries">
+    <thead>
+        <tr>
+            <th>Países</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let country of countries">
+            <td (click)="sendToCountryDetails(country.code)">{{country.name}}</td>
+        </tr>
+    </tbody>
+</table>

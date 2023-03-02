@@ -1,0 +1,11 @@
+<ul *ngIf="cientificos.length > 0; else tmpNoHayCientificos">
+    <li *ngFor="let cientifico of cientificos">
+        <a routerLink="/cientifico/{{cientifico.id}}">
+            {{cientifico.nombre}}
+        </a>
+    </li>
+</ul>
+
+<ng-template #tmpNoHayCientificos>
+    Consultando información. Espere por favor.
+</ng-template>

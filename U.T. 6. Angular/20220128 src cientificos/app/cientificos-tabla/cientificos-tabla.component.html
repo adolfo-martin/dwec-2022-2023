@@ -1,0 +1,16 @@
+<table *ngIf="cientificos.length !== 0; else tmpNoHayCientificos">
+    <thead>
+        <tr>
+            <th>Nombre:</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cientifico of cientificos">
+            <td (click)="mostrarCientifico(cientifico.id)">{{cientifico.nombre}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #tmpNoHayCientificos>
+    Consultando información. Espere por favor.
+</ng-template>

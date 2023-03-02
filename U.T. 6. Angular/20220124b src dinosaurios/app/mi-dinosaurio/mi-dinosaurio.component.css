@@ -1,0 +1,15 @@
+:host {
+    display: inline-block;
+    background-color: darkblue;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+p {
+    color: green;
+    background-color: coral;
+}
+
+img {
+    height: 100px;
+}

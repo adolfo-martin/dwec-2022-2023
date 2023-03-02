@@ -1,0 +1,18 @@
+<table *ngIf="pokemons$ | async as pokemons ; else tmpWaitPlease">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Url</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pokemon of pokemons">
+            <td>{{pokemon.name}}</td>
+            <td>{{pokemon.url}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #tmpWaitPlease>
+    <div>Espere por favor. Estamos recuperando la información...</div>
+</ng-template>

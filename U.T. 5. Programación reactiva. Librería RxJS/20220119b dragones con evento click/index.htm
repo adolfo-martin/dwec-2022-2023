@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="tButNextDragon">Siguiente dragón</button>
+    <p id="tParDragon" style="border: solid 1px red"></p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.5.2/rxjs.umd.min.js"></script>
+
+    <script>
+        'use strict';
+
+        const dragons = [
+            { id: 1, name: 'Acarion', length: 9, weight: 23000 },
+            { id: 2, name: 'Besarion', length: 15, weight: 65000 },
+            { id: 3, name: 'Cursarion', length: 7, weight: 15000 },
+            { id: 4, name: 'Divirion', length: 14, weight: 54000 },
+            { id: 5, name: 'Estocarion', length: 18, weight: 97000 },
+        ];
+
+        const { fromEvent, from } = rxjs;
+        const { map, concatMap, tap } = rxjs.operators;
+
+        const button$ = fromEvent(tButNextDragon, 'click');
+        const dragons$ = from(dragons);
+
+        const extractName = ({ name }) => name;
+
+        const stream$ = button$.pipe(
+            concatMap(event =>
+                dragons$.pipe(
+                    map(extractName),
+                    tap(console.log),
+                )
+            )
+        )
+
+        const subscription = stream$.subscribe({
+            next: dragon => tParDragon.innerText = dragon,
+            complete: () => {
+                tButNextDragon.disabled = true;
+                console.log('FIN');
+                subscription.unsubscribe();
+            },
+            error: console.error
+        });
+
+
+
+
+        // button$.subscribe(showDragon);
+
+        // function showDragon(event) {
+        //     console.log(event);
+        //     tParDragon.innerText = dragons[counter++].name;
+        //     if (counter === dragons.length) {
+        //         tButNextDragon.disabled = true;
+        //         subscription.unsubscribe();
+        //     }
+        // }
+
+    </script>
+</body>
+
+</html>

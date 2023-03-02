@@ -1,0 +1,9 @@
+:host {
+    background-color: bisque;
+    display: inline-block;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}

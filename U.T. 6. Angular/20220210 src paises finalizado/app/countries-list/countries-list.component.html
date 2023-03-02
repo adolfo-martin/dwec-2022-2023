@@ -1,0 +1,5 @@
+<ol *ngIf="countries$ | async as countries">
+    <li *ngFor="let country of countries">
+        <a routerLink="/country/{{country.code}}">{{country.name}}</a>
+    </li>
+</ol>

@@ -1,0 +1,21 @@
+:root {
+    --color-background: rgb(223, 205, 205);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    background-color: var(--color-background);
+    display: grid;
+    place-content: center;
+}
+
+hola-mundo {
+    transform: rotate(-30deg);
+    transform-origin: center;
+}

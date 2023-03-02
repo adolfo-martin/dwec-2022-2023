@@ -1,0 +1,2 @@
+https://www.jacobsoft.com.mx/es_mx/implementacion-de-websockets-con-node-js/
+https://blog.sessionstack.com/how-javascript-works-the-mechanics-of-web-push-notifications-290176c5c55d

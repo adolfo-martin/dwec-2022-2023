@@ -1,0 +1,4 @@
+table, tr, th, td {
+    border: solid blue 2px;
+    border-collapse: collapse;
+}

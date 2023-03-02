@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const response = await fetch('https://api.football-data.org/v2/competitions/', {
+                // mode: 'no-cors',
+                headers: {
+                    // 'Content-Type': 'application/json',
+                    'X-Auth-Token': 'a627e22084db4304bd66f339ec95a4a5',
+                },
+            })
+
+            const data = await response.json()
+
+            console.log(data)
+
+            // const parametros = {
+            //     method: 'get',
+            //     headers: {
+            //         //'Authorization': `Bearer ${MEDIUM_ACCESS_TOKEN}`,
+            //         //'Content-type': 'application/json',
+            //         //'Accept': 'application/json',
+            //         //'Accept-Charset': 'utf-8',
+            //         'X-Auth-Token': '0d21b05387dc403aae49c1c605925176'
+            //     }
+            // }
+
+            // fetch('http://api.football-data.org/v2/teams/78', parametros)
+            //     .then(function (response) {
+            //         if (!response.ok) {
+            //             throw new Error(`Se ha producido el error ${response.status}`);
+            //         }
+            //         return response.json();
+            //     })
+            //     .then(console.log)
+            //     .catch(console.log);
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!-- <span *ngIf="country$ | async as country; else tmpWaitplease"> -->
+<span *ngIf="country$ | async as country; else tmpWaitplease">
+    <label>Nombre: </label>
+    <input type="text" disabled [value]="country.name">
+
+    <br>
+    <label>Capital: </label>
+    <input type="text" disabled [value]="country.capital">
+
+    <br>
+    <label>Población: </label>
+    <input type="text" disabled [value]="country.population">
+
+    <br>
+    <label>Superficie: </label>
+    <input type="text" disabled [value]="country.area">
+</span>
+
+<ng-template #tmpWaitplease>
+    <span>Espere por favor</span>
+</ng-template>

@@ -1,0 +1,7 @@
+<select *ngIf="countries$ | async as countries; else tmpWaitplease">
+    <option *ngFor="let country of countries" [value]="country.code">{{country.name}}</option>
+</select>
+
+<ng-template #tmpWaitplease>
+    <div>Espere, por favor</div>
+</ng-template>

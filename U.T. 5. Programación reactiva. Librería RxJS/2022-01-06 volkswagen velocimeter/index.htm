@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+        }
+
+        .velocimeter-dashboard {
+            width: 100px;
+            height: 100px;
+            border: solid 5px red;
+            border-radius: 50%;
+            display: grid;
+            place-content: center;
+        }
+
+        .velocimeter-centralscreen {
+            width: 150px;
+            height: 200px;
+            border: solid 5px darkgrey;
+            display: grid;
+            place-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="velocimeter-dashboard"></div>
+    <div class="velocimeter-centralscreen"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.5.1/rxjs.umd.min.js"></script>
+    <script type="module">
+        import VelocitySensor from './VelocitySensor.js'
+
+        document.addEventListener('DOMContentLoaded', (e) => {
+            const sensor = new VelocitySensor()
+            const sensor$ = sensor.getSensor$()
+
+            const velocimeterDashboard = document.querySelector('.velocimeter-dashboard')
+            sensor$.subscribe(velocity => {
+                velocimeterDashboard.innerText = velocity
+            })
+
+            const velocimeterCentralscreen = document.querySelector('.velocimeter-centralscreen')
+            sensor$.subscribe(velocity => {
+                velocimeterCentralscreen.innerText = velocity;
+            })
+
+            sensor.activate()
+        })
+    </script>
+</body>
+
+</html>
